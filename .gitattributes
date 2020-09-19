@@ -1,5 +1,8 @@
-* text=auto
+* text=auto eol=lf
+
+*.{bat,[B][b][A][a][T][t]} text eol=crlf
+*.{cmd,[C][c][M][m][D][d]} text eol=crlf
+
 *.sh text eol=lf
-*.cmd text eol=crlf
-*.bat text eol=crlf
+
 lib/* linguist-generated
