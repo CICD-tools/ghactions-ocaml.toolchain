@@ -5,7 +5,7 @@ set repository=%4
 set variant=%5
 
 set CYGWIN_ROOT=c:\cygwin
-%toolPath%\setup-x86_64.exe --quiet-mode --root %CYGWIN_ROOT% --site http://cygwin.mirror.constant.com --packages curl,diff,diffutils,git,m4,make,patch,perl,rsync,unzip,mingw64-i686-gcc-core,mingw64-x86_64-gcc-core,mingw64-i686-binutils,mingw64-x86_64-binutils
+%toolPath%\setup-x86_64.exe --quiet-mode --root %CYGWIN_ROOT% --site http://cygwin.mirror.constant.com --packages curl,diff,diffutils,dos2unix,git,m4,make,patch,perl,rsync,unzip,mingw64-i686-gcc-core,mingw64-x86_64-gcc-core,mingw64-i686-binutils,mingw64-x86_64-binutils
 copy %toolPath%\setup-x86_64.exe %CYGWIN_ROOT%
 set PATH=%CYGWIN_ROOT%\wrapperbin;%CYGWIN_ROOT%\bin;%PATH%
 dos2unix %__dirname%\install-ocaml-windows.sh
