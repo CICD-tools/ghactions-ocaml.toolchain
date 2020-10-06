@@ -76,9 +76,22 @@ jobs:
         id: vars
         shell: bash
         run: |
-          outputs() { for var in "$@" ; do echo steps.vars.outputs.${var}="${!var}" ; echo ::set-output name=${var}::${!var} ; done ; }
-          MINGW_ARCH='x86_64' ; case '${{ matrix.job.ocaml-version }}' in *+mingw32*) MINGW_ARCH='i686' ;; *+mingw64*) MINGW_ARCH='x86_64' ;; esac
-          MSVC_ARCH='' ; case '${{ matrix.job.ocaml-version }}' in *+msvc32*) MSVC_ARCH='x86' ;; *+msvc64*) MSVC_ARCH='x64' ;; esac
+          outputs() {
+            for var in "$@" ; do
+              echo steps.vars.outputs.${var}="${!var}"
+              echo ::set-output name=${var}::${!var}
+            done
+          }
+          MINGW_ARCH='x86_64'
+          case '${{ matrix.job.ocaml-version }}' in
+            *+mingw32*) MINGW_ARCH='i686' ;;
+            *+mingw64*) MINGW_ARCH='x86_64' ;;
+          esac
+          MSVC_ARCH=''
+          case '${{ matrix.job.ocaml-version }}' in
+            *+msvc32*) MSVC_ARCH='x86' ;;
+            *+msvc64*) MSVC_ARCH='x64' ;;
+          esac
           outputs MINGW_ARCH MSVC_ARCH
 
       - name: Enable/config MSVC environment (if/when needed)
