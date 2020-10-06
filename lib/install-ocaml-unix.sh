@@ -13,8 +13,8 @@ if [ "$OCAML_VARIANT" != "" ]; then OCAML_VV="$OCAML_VERSION+$OCAML_VARIANT" ; f
 CURRENT_OCAML=$(opam list ocaml-variants --installed --columns version --short --color=never)
 if [ -z "$CURRENT_OCAML" ]; then CURRENT_OCAML=$(opam info ocaml --field=version --color=never) ; fi
 
-OS_ID=$(eval echo $(cat /etc/os-release | grep -Po "(?<=^ID=)(.*)$"))
-OS_VERSION=$(eval echo $(cat /etc/os-release | grep -Po "(?<=^VERSION_ID=)(.*)$"))
+OS_ID=$(eval echo "$(grep -Po "(?<=^ID=)(.*)$" < /etc/os-release)")
+OS_VERSION=$(eval echo "$(grep -Po "(?<=^VERSION_ID=)(.*)$" < /etc/os-release)")
 
 # add gcc/g++ multilib for '32bit' variants
 case "$OCAML_VARIANT" in *32bit*) /usr/bin/sudo apt-get -y install gcc-multilib g++-multilib ;; esac
